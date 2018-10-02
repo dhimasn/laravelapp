@@ -3,15 +3,15 @@
 @section('main')
 <div id="siswa">
 <h2>siswa</h2>
-<?php if(!empty($siswa)):?>
+@if(!empty($siswa))
 	<ul>
-		<?php foreach($siswa as $anak): ?>
-			<li><?= $anak?></li>
-		<?php endforeach ?>
+		@foreach ($siswa as $anak)
+			<li>{{$anak}}</li>
+		@endforeach
 	</ul>
-<?php else: ?>
+@else
 	<p>Tidak ada data siswa</p>
-<?php endif ?>
+@endif
 </div>
 @stop
 

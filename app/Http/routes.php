@@ -14,7 +14,8 @@ Route::get('/',function(){
 	return view('pages.homepage');
 });
 Route::get('about',function(){
-	return view('pages.about');
+	$halaman = 'about';
+	return view('pages.about',compact('halaman'));
 });
 
 Route::get('halaman-rahasia',['as'=>'secret',function(){
@@ -26,8 +27,9 @@ Route::get('showmesecret',function(){
 });
 
 Route::get('siswa',function(){
+	$halaman = 'siswa';
 	$siswa=['rasmus lerdorf','Taylor otwell','Brendan Eich','john resig'];
-	return view('siswa.index',compact('siswa'));
+	return view('siswa.index',compact('halaman','siswa'));
 });
 
 
