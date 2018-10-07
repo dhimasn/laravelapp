@@ -10,28 +10,16 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/',function(){
-	return view('pages.homepage');
-});
-Route::get('about',function(){
-	$halaman = 'about';
-	return view('pages.about',compact('halaman'));
-});
-
-Route::get('halaman-rahasia',['as'=>'secret',function(){
-	return 'anda sedang melihat<strong>Halaman Rahasia</strong>';
-}]);
-
-Route::get('showmesecret',function(){
-	return redirect()->route('secret');
-});
-
-Route::get('siswa',function(){
-	$halaman = 'siswa';
-	$siswa=['rasmus lerdorf','Taylor otwell','Brendan Eich','john resig'];
-	return view('siswa.index',compact('halaman','siswa'));
-});
-
+Route::get('/','PagesController@homepage');
+Route::get('about','PagesController@about');
+Route::get('siswa','SiswaController@index');
+Route::get('halaman-rahasia',[
+		'as'=> 'secret',
+		'uses'=>'RahasiaController@halamanRahasia'
+]);
+Route::get('showmesecret','RahasiaController@showMeSecret');
+Route::get('siswa/create','SiswaController@create');
+Route::post('siswa','SiswaController@store');
 
 
 
