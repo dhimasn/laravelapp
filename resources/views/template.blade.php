@@ -22,4 +22,6 @@
 	<script src="{{asset('js/jquery_2_2_1.min.js')}}"></script>
 	<script src="{{asset('bootstrap-3.3.5/js/bootstrap.min.js')}}"></script>
 	</body>
-<html>
+</html>
+
+

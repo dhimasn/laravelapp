@@ -6,23 +6,57 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\siswa;
+
 class SiswaController extends Controller
 {
     public function index()
 	{
-		$halaman='siswa';
-		$siswa=['rasmus lerdorf','Taylor Otwell','Brendan Eich','John Resig'];
-		return view('siswa.index',compact('halaman','siswa'));
+		
+		$siswa_list=Siswa::all();
+		$jumlah_siswa= $siswa_list -> count();
+		return view('siswa.index',compact('siswa_list','jumlah_siswa'));
 	}
 	public function create()
 	{
+		$halaman='siswa';
 		return view('siswa.create');
 	}
 	public function store(Request $request)
 	{
 		//dd($request);
-		$siswa = $request->all();
+		//$siswa = $request->all();
 		//dd($siswa);
-		return $siswa;
+		//$siswa= new\App\Siswa;
+		//$siswa->nisn =$request->nisn;
+		//$siswa->nama_siswa=$request->nama_siswa;
+		//$siswa->tanggal_lahir=$request->tanggal_lahir;
+		//$siswa->jenis_kelamin=$request->jenis_kelamin;
+		//$siswa->save();
+		Siswa::create($request->all());
+		return redirect('siswa');
+	}
+	public function show($id)
+	{
+		$halaman='siswa';
+		$siswa=Siswa::findOrFail($id);
+		return view('siswa.show',compact('siswa'));
+	}
+	public function edit($id)
+	{
+		$siswa = Siswa::findOrFail($id);
+		return view('siswa.edit',compact('siswa'));
+	}
+	public function update($id, Request $request)
+	{
+		$siswa = Siswa::findOrFail($id);
+		$siswa->update($request->all());
+		return redirect('siswa');
+	}
+	public function destroy($id)
+	{
+		$siswa = Siswa::findOrFail($id);
+		$siswa-> delete();
+		return redirect('siswa');
 	}
 }
