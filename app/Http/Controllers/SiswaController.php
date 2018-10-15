@@ -13,9 +13,10 @@ class SiswaController extends Controller
     public function index()
 	{
 		
-		$siswa_list=Siswa::all();
-		$jumlah_siswa= $siswa_list -> count();
+		$siswa_list=Siswa::orderBy('nama_siswa','asc')->Paginate(10);
+		$jumlah_siswa= Siswa::count();
 		return view('siswa.index',compact('siswa_list','jumlah_siswa'));
+		
 	}
 	public function create()
 	{
@@ -58,5 +59,13 @@ class SiswaController extends Controller
 		$siswa = Siswa::findOrFail($id);
 		$siswa-> delete();
 		return redirect('siswa');
+	}
+	public function tesCollection()
+	{
+		$orang=['rasmus lerdorf','taylor otwell','brendan eich','john resig'];
+		$koleksi=collect($orang)->map(function($nama){
+			return ucwords($nama);
+		});
+		return $koleksi;
 	}
 }
