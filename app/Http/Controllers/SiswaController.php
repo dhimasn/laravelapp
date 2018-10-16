@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\siswa;
 
+use Validator;
+
 class SiswaController extends Controller
 {
     public function index()
@@ -34,8 +36,21 @@ class SiswaController extends Controller
 		//$siswa->tanggal_lahir=$request->tanggal_lahir;
 		//$siswa->jenis_kelamin=$request->jenis_kelamin;
 		//$siswa->save();
-		Siswa::create($request->all());
-		return redirect('siswa');
+		//Siswa::create($request->all());
+		$input=$request->all();
+		$validator=Validator::make($input,[
+			'nisn'=>'required|string|size:4|unique:siswa,nisn',
+			'nama_siswa'=>'required|string|max:30',
+			'tanggal_lahir'=>'required|date',
+			'jenis_kelamin'=>'required|in:L,P',
+		]);
+		if($validator->fails()){
+			return redirect('siswa/create')
+				   ->withInput()
+				   ->withErrors($validator);
+		}
+		Siswa::create($input);
+		return redirect('siswa')->withInput();
 	}
 	public function show($id)
 	{
