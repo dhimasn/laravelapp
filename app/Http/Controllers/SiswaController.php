@@ -62,10 +62,60 @@ class SiswaController extends Controller
 	}
 	public function tesCollection()
 	{
-		$orang=['rasmus lerdorf','taylor otwell','brendan eich','john resig'];
-		$koleksi=collect($orang)->map(function($nama){
-			return ucwords($nama);
-		});
-		return $koleksi;
+		//$orang=['rasmus lerdorf','taylor otwell','brendan eich','john resig'];
+		//$koleksi=collect($orang)->map(function($nama){
+		//	return ucwords($nama);
+		//});
+		//return $koleksi;
+		
+		//$collection=Siswa::all()->first();
+		//return $collection;
+		
+		//$collection = Siswa::all()->last();
+		//return $collection;
+		
+		//$collection=Siswa::all();
+		//$jumlah = $collection->count();
+		//return 'Jumlah Data :'. $jumlah;
+		
+		//$collection=Siswa::all()->take(2);
+		//return $collection;
+		
+		//$collection=Siswa::all()->pluck('nama_siswa');
+		//return $collection;
+		
+		//$collection=Siswa::all();
+		//$collection=$collection->where('nisn','1005');
+		//return $collection;
+		
+		//$collection=Siswa::all();
+		//$collection=$collection->whereIn('nisn',['1003','1007','1009']);
+		//return $collection;
+		
+		//$data=[
+			   //['nisn'=>'1001','nama_siswa'=>'agus yulianto'],
+			  // ['nisn'=>'1002','nama_siswa'=>'agustina aggreani'],
+			   //['nisn'=>'1003','nama_siswa'=>'bayu firmansyah'],   
+			//];
+			//$koleksi=collect($data);
+			//$koleksi->toJson();
+			//return $koleksi;
 	}
+	public function dateMutator()
+	{
+		//$siswa=Siswa::findOrFail(1);
+		//dd($siswa->created_at);
+		//return 'Umur Siswa ini adalah :'.$siswa->tanggal_lahir->age.'tahun.';
+	
+		$siswa=Siswa::findOrFail(1);
+		$str='Tanggal Lahir:'.
+			  $siswa->tanggal_lahir->format('d-m-y').'<br>'.
+			  'ulang tahun ke-30 akan jatuh pada tanggal:'.
+			  '<strong>'.
+			  $siswa->tanggal_lahir->addYears(30)->format('d-m-y')
+			  .'</strong>';
+		return $str;
+	}
+		
+		
 }
