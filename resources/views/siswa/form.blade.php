@@ -1,11 +1,9 @@
 	@if($errors->any())
-		<div class="form-group{{$errors->has('nisn')?
-		'has-error':'has-success'}}">
+	<div class="form-group{{$errors->has('nisn')?
+	'has-error':'has-success'}}">
 	@else
-		<div class="form-group">
-	@endif
-	
 	<div class="form-group">
+	@endif
 	{!!Form::label('nisn','NISN:',['class'=>'control-label'])!!}
 	{!!Form::text('nisn',null,['class'=>'form-control'])!!}
 	@if($errors->has('nisn'))
