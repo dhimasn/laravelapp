@@ -46,11 +46,11 @@ class SiswaController extends Controller
 		]);
 		if($validator->fails()){
 			return redirect('siswa/create')
-				   ->withInput()
-				   ->withErrors($validator);
+				->withInput()
+				->withErrors($validator);
 		}
 		Siswa::create($input);
-		return redirect('siswa')->withInput();
+		return redirect('siswa');
 	}
 	public function show($id)
 	{
