@@ -23,4 +23,9 @@ class Siswa extends Model
 		return strtolower($nama_siswa);
 	}
 	protected $dates =['tanggal_lahir'];
+	
+	public function telepon()
+	{
+		return $this->hasOne('App\Telepon','id_siswa');
+	}
 }
